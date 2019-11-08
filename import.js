@@ -31,6 +31,7 @@ Available options:
   --help (-h)          Display this help
   --dev (-d)           Include developer information - field Id's and entity Id's
   --no-fields (-n)     Hide entity fields information, show only entity names and relationships
+  --json               Display json object instead plant uml
 `;
 
 if (argv.help || argv.h) {
@@ -61,9 +62,15 @@ async function run() {
 
   const modelsMap = convertApi.contentTypesToModelMap(contentTypes);
   const dotStr = convertApi.modelsMapToDot(modelsMap, options);
-
-  console.log(dotStr);
-  return dotStr;
+  
+  if(argv.json) {
+    const json = JSON.stringify(modelsMap);
+    console.log(json);
+    return json;
+  } else {
+    console.log(dotStr);
+    return dotStr;
+  }
 }
 
 try {

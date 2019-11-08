@@ -33,8 +33,8 @@ function getRelations(contentType, allTypes) {
   // One-to-one relationships are being stored in field.validations
   // One-to-many are stored in field.items
   contentType.fields.forEach((field) => {
-    if (hasValues(field.validations) && field.type === TYPE_LINK) {
-      addRelation('one', field.id, field.linkType, field.validations);
+    if (field.type === 'Link' && field.linkType === LINK_TYPE_ENTRY) {
+      addRelation('one', field.id, field.linkType, [{linkContentType: field.name}]);
     } else if (field.items && field.items.type === TYPE_LINK) {
       const { linkType, validations } = field.items;
       addRelation('many', field.id, linkType, validations);

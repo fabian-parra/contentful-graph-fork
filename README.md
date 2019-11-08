@@ -74,6 +74,8 @@ or simply in command-line:
 
 `--hide-fields` (`-n`) Do not include fields information, only entities
 
+`--json` Display json object instead plant uml 
+
 ## Reading from local file
 
 It is possible to run import against local file with exported model defintions:
