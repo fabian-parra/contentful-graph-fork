@@ -37,7 +37,7 @@ function modelsMapToDot(models, { hideEntityFields, dev } = {}) {
     } else {
       objects[modelName] = `"${modelName}" [label="{${dev ? `[${model.sys.id}] ${modelName}` : modelName} |          | ${fields.join('|').replace(/"/g, "'")}}" shape=Mrecord];`;
     }
-
+    objects[modelName] = model.isColored ? `node[style=filled, fillcolor = red, fontcolor= white] ${objects[modelName]} node[style=filled, fillcolor=white, fontcolor=black]` : objects[modelName];
     const rels = model.relations;
     // eslint-disable-next-line no-underscore-dangle
     if (rels._hasAssets) {
